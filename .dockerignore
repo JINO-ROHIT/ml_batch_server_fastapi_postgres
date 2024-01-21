@@ -1,0 +1,8 @@
+dockerfile
+Dockerfile
+.dockerignore
+log
+tmp
+__pycache__
+.pytest_cache
+postgres_data/

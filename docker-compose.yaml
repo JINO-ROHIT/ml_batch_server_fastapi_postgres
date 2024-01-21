@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: jino
+      POSTGRES_PASSWORD: jino
+      POSTGRES_DB: sample_db
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+  
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/code
+    
