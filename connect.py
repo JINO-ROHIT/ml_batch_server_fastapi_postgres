@@ -16,3 +16,6 @@ for row in rows:
 
 cur.close()
 conn.close()
+
+# from src.ml.predict import classifier
+# classifier.predict_label([[5.1, 3.5, 1.4, 0.2]])

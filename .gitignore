@@ -1,1 +1,5 @@
 postgres_data/
+__pycache__/
+*.bin
+models/
+.env
