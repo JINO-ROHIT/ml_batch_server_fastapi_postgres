@@ -1,4 +1,7 @@
 import psycopg2
+from psycopg2 import sql
+import json
+from datetime import datetime
 
 conn = psycopg2.connect(
     database="sample_db",
@@ -6,16 +9,6 @@ conn = psycopg2.connect(
     password="jino",
     host="localhost"
 )
-
-cur = conn.cursor()
-
-cur.execute("SELECT * FROM student")
-rows = cur.fetchall()
-for row in rows:
-    print(row)
-
-cur.close()
-conn.close()
 
 # from src.ml.predict import classifier
 # classifier.predict_label([[5.1, 3.5, 1.4, 0.2]])
