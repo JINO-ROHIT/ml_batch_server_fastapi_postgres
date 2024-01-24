@@ -4,6 +4,8 @@ from fastapi import FastAPI
 from src.api.routers import routers
 from configs.configurations import APIConfigurations
 
+from src.jobs.job import scheduler
+
 logger = getLogger(__name__)
 
 
@@ -14,3 +16,5 @@ app = FastAPI(
 )
 
 app.include_router(routers.router, prefix="", tags=[""])
+
+scheduler.start()

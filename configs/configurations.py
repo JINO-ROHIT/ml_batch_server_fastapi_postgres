@@ -20,5 +20,5 @@ class DBConfigurations:
     host = os.getenv("HOST")
 
 
-logger.info(f"{APIConfigurations.__name__}: \n{APIConfigurations.__dict__}")
-logger.info(f"{ModelConfigurations.__name__}: \n{ModelConfigurations.__dict__}")
+# logger.info(f"{APIConfigurations.__name__}: \n{APIConfigurations.__dict__}")
+# logger.info(f"{ModelConfigurations.__name__}: \n{ModelConfigurations.__dict__}")

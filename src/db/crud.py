@@ -24,7 +24,7 @@ def create_entry(values: List[List[float]]):
         cursor.execute(insert_query, (json.dumps(list_of_lists), prediction_value, current_timestamp))
 
     conn.commit()
-    conn.close()
+    #conn.close()
 
 
 def retrieve_all():
@@ -43,7 +43,7 @@ def retrieve_all():
         values_list = json.loads(str(values_json))
         logger.info(f"Values: {values_list}, Prediction: {prediction}, Timestamp: {timestamp}")
 
-    conn.close()
+    #conn.close()
 
 def predict_all():
     cur = conn.cursor()
@@ -61,7 +61,8 @@ def predict_all():
         values_json, current_prediction, timestamp = row
         values_list = json.loads(str(values_json))
 
-        new_prediction = classifier.predict_label([[5.1, 3.5, 1.4, 0.2]])
+        print(values_list)
+        new_prediction = classifier.predict_label(values_list)
 
         update_query = sql.SQL("""
             UPDATE iris_predictions
@@ -72,7 +73,19 @@ def predict_all():
         with conn.cursor() as cursor:
             cursor.execute(update_query, (new_prediction, timestamp))
 
-        logger.success(f"Values: {values_list}, Old Prediction: {current_prediction}, New Prediction: {new_prediction}, Timestamp: {timestamp}")
+        #logger.success(f"Values: {values_list}, Old Prediction: {current_prediction}, New Prediction: {new_prediction}, Timestamp: {timestamp}")
 
     conn.commit()
-    conn.close()
+    #conn.close()
+
+
+def remove_all():
+    delete_query = sql.SQL("""
+    DELETE FROM iris_predictions
+    """)
+
+    with conn.cursor() as cursor:
+        cursor.execute(delete_query)
+
+    conn.commit()
+    #conn.close()
