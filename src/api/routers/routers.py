@@ -16,7 +16,6 @@ def welcome():
 
 @router.get("/health")
 def health():
-    print('treiggered')
     return {"health": "ok"}
 
 @router.post("/predict")
